@@ -1,8 +1,10 @@
 # VoicePlayer
 播放url格式的网络音频，支持缓存.
+[ ![Download](https://api.bintray.com/packages/alexfugui/maven/sPlayer/images/download.svg?version=1.0.1) ](https://bintray.com/alexfugui/maven/sPlayer/1.0.1/link)
 
 # 依赖 
 ```
+maven {ur 'https://dl.bintray.com/alexfugui/maven'}
 implementation 'com.alex:SPlayer:1.0.0'
 ```
 
@@ -21,6 +23,14 @@ public class AppApplication extends Application {
     public void onCreate() {
         super.onCreate();
         SPlayer.init(this);
+        //以下不是必须设置
+        //corePoolSize 设置核心下载最大线程,默认2 最大6. 传入小于0或大于6不生效
+        //maximumPoolSize 设置最大下载线程数量,默认8,小于corePoolSize则等于corePoolSize,最大数值64,根据机器性能自己选择适当的线程数
+        SPlayer.instance().setCorePoolSize(int corePoolSize).setMaximumPoolSize(int maximumPoolSize);
+        //设置缓存文件夹目录和缓存文件夹名称
+        //cacheDirPath 默认为 mContext.getExternalCacheDir()
+        //cachePath 默认为 "/VoiceCache"
+        SPlayer.instance().setCacheDirPath(String cacheDirPath).setCachePath(String cachePath);
     }
 }
 ```
@@ -86,15 +96,23 @@ SPlayer.instance()
         });
 
 ```
-#权限
+# 权限
 ```
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 ```
 
-#升级计划
+# 升级计划
 - [x] 重写优化tMediaPlayer
+- [x] 添加缓存查询和删除
 - [ ] 增加边播边缓存功能
 - [ ] 添加录音功能
+
+# 测试机型
+```
+- [x] 红米K20 pro Android10 MIUI12
+- [x] 雷电模拟器3.0 Android7.1.2
+- [x] AS自带模拟器 API26
+```
 

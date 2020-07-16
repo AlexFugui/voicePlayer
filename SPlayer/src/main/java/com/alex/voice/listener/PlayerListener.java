@@ -1,13 +1,13 @@
 package com.alex.voice.listener;
 
-import android.media.MediaPlayer;
+import com.alex.voice.player.SMediaPlayer;
 
 public interface PlayerListener {
-    void LoadSuccess(MediaPlayer mediaPlayer);
+    void LoadSuccess(SMediaPlayer mediaPlayer);
 
-    void Loading(MediaPlayer mediaPlayer, int i);
+    void Loading(SMediaPlayer mediaPlayer, int i);
 
-    void onCompletion(MediaPlayer mediaPlayer);
+    void onCompletion(SMediaPlayer mediaPlayer);
 
     void onError(Exception e);
 }

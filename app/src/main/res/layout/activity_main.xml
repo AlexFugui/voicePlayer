@@ -17,9 +17,15 @@
         tools:listitem="@layout/holder" />
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/btn_play"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="播放" />
+        android:text="播放(默认播放第一个)" />
+
+    <Button
+        android:id="@+id/btn_cache"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="缓存" />
 
 </LinearLayout>

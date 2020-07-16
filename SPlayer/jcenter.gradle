@@ -5,7 +5,7 @@ def siteUrl = 'https://github.com/AlexFugui/VoicePlayer' //项目在github主页
 def gitUrl = 'https://github.com/AlexFugui/VoicePlayer.git'   //Git仓库的地址
 //implementation 'com.davis.ui.pulltorefresh:pulltorefresh:2.1.0' 为例  组成是x:y:z
 group = "com.alex" //唯一包名,是依赖名称中的x
-version = "1.0.0"//项目引用的版本号,发布aar的库版本,是依赖名称中的z
+version = "1.0.1"//项目引用的版本号,发布aar的库版本,是依赖名称中的z
 //y是module的包名, 现在叫SPlayer
 
 install {
