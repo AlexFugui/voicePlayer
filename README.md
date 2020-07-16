@@ -23,6 +23,7 @@ public class AppApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //初始化是必须的
         SPlayer.init(this);
         //以下不是必须设置
         //corePoolSize 设置核心下载最大线程,默认2 最大6. 传入小于0或大于6不生效
