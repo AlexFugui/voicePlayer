@@ -18,7 +18,7 @@ implementation 'com.alex:SPlayer:1.0.1'
 [GitHub](https://github.com/AlexFugui/VoicePlayer "GitHub")
 
 # 初始化
-```
+```java
 public class AppApplication extends Application {
     @Override
     public void onCreate() {
