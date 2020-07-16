@@ -14,8 +14,8 @@ implementation 'com.alex:SPlayer:1.0.0'
   
 [GitHub](https://github.com/AlexFugui/VoicePlayer "GitHub")
 
+# 初始化
 ```
-//需要在application中初始化 这很重要
 public class AppApplication extends Application {
     @Override
     public void onCreate() {
@@ -25,6 +25,7 @@ public class AppApplication extends Application {
 }
 ```
 
+# 使用
 ```
 //预加载,会下载文件下来
 VoiceDownloadUtil.instance()
@@ -85,9 +86,11 @@ SPlayer.instance()
         });
 
 ```
-#其他
+#权限
 ```
-VoicePlayer.instance().getMediaPlayer()//获取tMediaPlayer实例
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 ```
 
 #升级计划
