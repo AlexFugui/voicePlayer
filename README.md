@@ -112,9 +112,6 @@ SPlayer.instance()
 - [ ] 添加录音功能
 
 # 测试机型
-```
 - [x] 红米K20 pro Android10 MIUI12
 - [x] 雷电模拟器3.0 Android7.1.2
 - [x] AS自带模拟器 API26
-```
-
