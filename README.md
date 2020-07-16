@@ -94,9 +94,7 @@ SPlayer.instance()
 ```
 
 #升级计划
-```
 - [x] 重写优化tMediaPlayer
 - [ ] 增加边播边缓存功能
 - [ ] 添加录音功能
-```
 
