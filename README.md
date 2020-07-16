@@ -4,7 +4,7 @@
 [ ![Download](https://api.bintray.com/packages/alexfugui/maven/sPlayer/images/download.svg?version=1.0.1) ](https://bintray.com/alexfugui/maven/sPlayer/1.0.1/link)
 
 # 依赖 
-```
+```groovy
 maven {ur 'https://dl.bintray.com/alexfugui/maven'}
 implementation 'com.alex:SPlayer:1.0.1'
 ```
@@ -38,7 +38,7 @@ public class AppApplication extends Application {
 ```
 
 # 使用
-```
+```java
 //预加载,会下载文件下来
 VoiceDownloadUtil.instance()
                 .download(data, new OnDownloadListener() {
@@ -65,7 +65,7 @@ VoiceDownloadUtil.instance()
                 });
 ```
 
-```
+```java
 //普通播放
 SPlayer.instance()
         .useWakeMode(false)//是否使用环形锁,默认不使用
@@ -99,7 +99,7 @@ SPlayer.instance()
 
 ```
 # 权限
-```
+```java
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
