@@ -9,14 +9,13 @@ implementation 'com.alex:SPlayer:1.0.0'
 # 用法:
 详情请下载demo查看
 
-```
+
 [Gitee地址](https://gitee.com/alexfugui/VoicePlayer "Gitee")
 https://gitee.com/alexfugui/VoicePlayer
-```
-```
+
+
 [GitHub](https://github.com/AlexFugui/VoicePlayer "GitHub")
 https://github.com/AlexFugui/VoicePlayer
-```
 
 ```
 //需要在application中初始化 这很重要
