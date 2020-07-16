@@ -3,20 +3,20 @@ apply plugin: 'com.jfrog.bintray'
 
 def siteUrl = 'https://github.com/AlexFugui/VoicePlayer' //项目在github主页地址
 def gitUrl = 'https://github.com/AlexFugui/VoicePlayer.git'   //Git仓库的地址
-// 唯一包名，比如implementation 'com.davis.ui.pulltorefresh:pulltorefresh:2.1.0'中的com.davis.ui.pulltorefresh就是这里配置的。
-group = "com.alex.voice"
-//项目引用的版本号，比如implementation 'com.davis.ui.pulltorefresh:pulltorefresh:2.1.0'中的2.1.0就是这里配置的。
-version = "1.0.0"//发布aar的库版本
+//implementation 'com.davis.ui.pulltorefresh:pulltorefresh:2.1.0' 为例  组成是x:y:z
+group = "com.alex" //唯一包名,是依赖名称中的x
+version = "1.0.5"//项目引用的版本号,发布aar的库版本,是依赖名称中的z
+//y是module的包名, 现在叫voice-player
 
 install {
     repositories.mavenInstaller {
         // 生成pom.xml和参数
         pom {
             project {
-                packaging 'aar'
+                packaging 'aar'//打包类型 aar文件
                 // 项目描述，复制我的话，这里需要修改。
-                name 'voice'// 可选，maven库中保存的项目名称。
-                description 'Android voice-player'// 可选，项目描述。
+                name 'sPlayer'// 在pom库中的包名
+                description 'Android voicePlayer'// 可选，项目描述。
                 url siteUrl // 项目主页，这里是引用上面定义好。
 
                 // 软件开源协议，现在一般都是Apache License2.0吧，复制我的，这里不需要修改。
@@ -80,9 +80,9 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = "maven"  //Repository名字 需要自己在bintray网站上先添加
-        name = "voicePlayer"
-// 发布到Bintray上的项目名字，这里的名字不是implementation 'com.davis.ui.pulltorefresh:pulltorefresh:2.1.0'中的pulltorefresh。
+        repo = "maven"
+        //Repository的名字.需要自己在bintray网站上先添加一个Organizations,然后再创建Repository,我这里取名叫maven,也是对应了Maven类型
+        name = "sPlayer"//项目上传以后在名为maven的库中的包名
         userOrg = 'alexfugui'//Bintray的组织中,你的id
         websiteUrl = siteUrl
         vcsUrl = gitUrl

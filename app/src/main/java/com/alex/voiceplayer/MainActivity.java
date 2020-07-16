@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        adapter = new VoiceAdapter(localList);
+//        adapter = new VoiceAdapter(localList);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(new DefaultAdapter.OnRecyclerViewItemClickListener<String>() {
             @Override

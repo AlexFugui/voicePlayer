@@ -1,3 +1,2 @@
-include ':voice'
-include ':app'
+include ':app', ':SPlayer'
 rootProject.name = "voicePlayer"
