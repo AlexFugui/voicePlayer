@@ -11,11 +11,8 @@ implementation 'com.alex:SPlayer:1.0.0'
 
 
 [Gitee地址](https://gitee.com/alexfugui/VoicePlayer "Gitee")
-https://gitee.com/alexfugui/VoicePlayer
-
-
+  
 [GitHub](https://github.com/AlexFugui/VoicePlayer "GitHub")
-https://github.com/AlexFugui/VoicePlayer
 
 ```
 //需要在application中初始化 这很重要
