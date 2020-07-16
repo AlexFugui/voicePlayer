@@ -3,7 +3,7 @@
 
 # 依赖 
 ```
-implementation 'com.alex.voice-player:voice-player:1.0.1'
+implementation 'com.alex:SPlayer:1.0.0'
 ```
 
 # 用法:
@@ -82,5 +82,16 @@ VoicePlayer.instance().playByUrl(url, new PlayerListener() {
                         }
 
                     });
+```
+#其他
+```
+VoicePlayer.instance().getMediaPlayer()//获取tMediaPlayer实例
+```
+
+#升级计划
+```
+1.重写优化tMediaPlayer
+2.增加边播边缓存功能
+3.添加录音功能
 ```
 
