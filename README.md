@@ -6,7 +6,7 @@
 # 依赖 
 ```
 maven {ur 'https://dl.bintray.com/alexfugui/maven'}
-implementation 'com.alex:SPlayer:1.0.0'
+implementation 'com.alex:SPlayer:1.0.1'
 ```
 
 # 用法:
