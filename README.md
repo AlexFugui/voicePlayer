@@ -96,6 +96,10 @@ SPlayer.instance()
             }
 
         });
+        
+String cacheSize = SPlayer.instance().getCacheSize(); //获取缓存大小,已格式化单位
+
+SPlayer.instance().clearCache();//删除缓存
 
 ```
 # 权限
@@ -106,7 +110,7 @@ SPlayer.instance()
 ```
 
 # 升级计划
-- [x] 重写优化tMediaPlayer
+- [x] 重写优化MediaPlayer
 - [x] 添加缓存查询和删除
 - [ ] 增加边播边缓存功能
 - [ ] 添加录音功能
@@ -115,3 +119,10 @@ SPlayer.instance()
 - [x] 红米K20 pro Android10 MIUI12
 - [x] 雷电模拟器3.0 Android7.1.2
 - [x] AS自带模拟器 API26
+
+# 更细日志
+
+## v1.0.1
+-优化MediaPlayer
+-增加缓存查询和删除功能
+
