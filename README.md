@@ -3,9 +3,8 @@
   
 [ ![Download](https://api.bintray.com/packages/alexfugui/maven/sPlayer/images/download.svg?version=1.0.1) ](https://bintray.com/alexfugui/maven/sPlayer/1.0.1/link)
 
-# 依赖 
+# 引入
 ```groovy
-maven {ur 'https://dl.bintray.com/alexfugui/maven'}
 implementation 'com.alex:SPlayer:1.0.1'
 ```
 
