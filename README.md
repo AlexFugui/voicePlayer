@@ -122,6 +122,6 @@ SPlayer.instance().clearCache();//删除缓存
 # 更细日志
 
 ## v1.0.1
--优化MediaPlayer
--增加缓存查询和删除功能
+- 优化MediaPlayer
+- 增加缓存查询和删除功能
 
