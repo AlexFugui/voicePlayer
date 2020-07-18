@@ -8,6 +8,7 @@ group = "com.alex" //唯一包名,是依赖名称中的x
 version = "1.0.1"//项目引用的版本号,发布aar的库版本,是依赖名称中的z
 //y是module的包名, 现在叫SPlayer
 
+
 install {
     repositories.mavenInstaller {
         // 生成pom.xml和参数
@@ -50,7 +51,9 @@ install {
 // 生成jar包的task，不需要修改。
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+//    classifier = 'sources'
+    getArchiveClassifier().convention("sources")
+    getArchiveClassifier().set("sources")
 }
 
 // 生成jarDoc的task，不需要修改。
@@ -63,7 +66,9 @@ task javadoc(type: Javadoc) {
 
 // 生成javaDoc的jar，不需要修改。
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
+//    classifier = 'javadoc'
+    getArchiveClassifier().convention("javadoc")
+    getArchiveClassifier().set("javadoc")
     from javadoc.destinationDir
 }
 artifacts {
