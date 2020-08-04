@@ -5,7 +5,7 @@
 
 # 引入
 ```groovy
-implementation 'com.alex:SPlayer:1.0.1'
+implementation 'com.alex:SPlayer:1.0.2'
 ```
 
 # 用法:
