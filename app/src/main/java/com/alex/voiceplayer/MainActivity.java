@@ -1,13 +1,18 @@
 package com.alex.voiceplayer;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -89,13 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 if (!SPlayer.instance().isPlaying()) {
                     //播放暂停 默认播放第一个item中内容
                     SPlayer.instance()
-                            .useWakeMode(false)//是否使用环形锁,默认不使用
-                            .useWifiLock(false)//是否使用wifi锁,默认不使用
-                            .setUseCache(true)//是否使用缓存,默认开启
                             .playByUrl(localList.get(0), new PlayerListener() {
                                 @Override
                                 public void LoadSuccess(SMediaPlayer mediaPlayer) {
                                     mediaPlayer.start();
+                                    mHandler.sendEmptyMessageDelayed(1, 5000);
                                 }
 
                                 @Override
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                             });
                 } else {
-                    SPlayer.instance().getMediaPlayer().pause();
+                    SPlayer.instance().pause();
                 }
             }
         });
@@ -131,4 +134,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+//            SPlayer.instance().seekTo(20 * 1000, MediaPlayer.SEEK_CLOSEST);
+            SPlayer.instance().seekTo(20 * 1000);
+        }
+    };
 }

@@ -4,8 +4,12 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.alex.voice.cache.VoiceCacheUtils;
 import com.alex.voice.listener.PlayerListener;
@@ -216,6 +220,15 @@ public class SPlayer {
         }
         lockedWifiLock();
         mMediaPlayer.release();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void seekTo(long msec, int mode) {
+        mMediaPlayer.seekTo(msec, mode);
+    }
+
+    public void seekTo(int msec) {
+        mMediaPlayer.seekTo(msec);
     }
 
     public boolean isPlaying() {

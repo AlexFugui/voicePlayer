@@ -32,6 +32,11 @@ public class AppApplication extends Application {
         //cacheDirPath 默认为 mContext.getExternalCacheDir()
         //cachePath 默认为 "/VoiceCache"
         SPlayer.instance().setCacheDirPath(String cacheDirPath).setCachePath(String cachePath);
+        SPlayer.instance()
+                        .useWakeMode(false)//是否使用唤醒锁,默认不使用
+                        .useWifiLock(false)//是否使用wifi锁,默认不使用
+                        .setUseCache(false);//是否使用缓存,默认开启
+
     }
 }
 ```
@@ -100,6 +105,10 @@ String cacheSize = SPlayer.instance().getCacheSize(); //获取缓存大小,已�
 
 SPlayer.instance().clearCache();//删除缓存
 
+SPlayer.instance().seekTo(int i);//增加播放进度修改
+
+SPlayer.instance().seekTo(long long, MediaPlayer.SEEK_CLOSEST);//适用api28以上的精准定位
+
 ```
 # 权限
 ```java
@@ -120,6 +129,9 @@ SPlayer.instance().clearCache();//删除缓存
 - [x] AS自带模拟器 API26
 
 # 更细日志
+
+## v1.0.2
+- 增加修改播放进度的方法
 
 ## v1.0.1
 - 优化MediaPlayer
