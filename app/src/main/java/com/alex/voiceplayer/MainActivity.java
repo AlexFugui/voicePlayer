@@ -1,14 +1,6 @@
 package com.alex.voiceplayer;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,8 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.alex.voice.SPlayer;
-import com.alex.voice.cache.VoiceCacheUtils;
+import com.alex.voice.listener.PlayByAssetsListener;
 import com.alex.voice.listener.PlayerListener;
 import com.alex.voice.player.SMediaPlayer;
 
@@ -134,24 +133,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        SPlayer.instance().playByAsset("overtime.mp3", new PlayerListener() {
-            @Override
-            public void LoadSuccess(SMediaPlayer mediaPlayer) {
-                mediaPlayer.start();
-            }
-
-            @Override
-            public void Loading(SMediaPlayer mediaPlayer, int i) {
-
-            }
-
+        SPlayer.instance().playByAsset("overtime.mp3", new PlayByAssetsListener() {
             @Override
             public void onCompletion(SMediaPlayer mediaPlayer) {
-
-            }
-
-            @Override
-            public void onError(Exception e) {
 
             }
         });

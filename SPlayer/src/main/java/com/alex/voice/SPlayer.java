@@ -10,10 +10,11 @@ import android.os.Build;
 import android.os.PowerManager;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
+
 import androidx.annotation.RequiresApi;
 
 import com.alex.voice.cache.VoiceCacheUtils;
+import com.alex.voice.listener.PlayByAssetsListener;
 import com.alex.voice.listener.PlayerListener;
 import com.alex.voice.netWork.VoiceDownloadUtil;
 import com.alex.voice.player.AudioFocusManager;
@@ -196,7 +197,7 @@ public class SPlayer {
             mMediaPlayer.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
                 @Override
                 public void onBufferingUpdate(MediaPlayer mediaPlayer, int i) {
-                    //异步加载在线音乐监听
+                    //加载在线音乐监听
                     listener.Loading(mMediaPlayer, i);
                 }
             });
@@ -219,6 +220,68 @@ public class SPlayer {
             mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
+                    listener.onCompletion(mMediaPlayer);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playByAsset(String fileName) {
+        //打开Asset目录
+        AssetManager assetManager = mContext.getAssets();
+        mMediaPlayer = new SMediaPlayer();
+        try {
+            AssetFileDescriptor assetFileDescriptor = assetManager.openFd(fileName);
+            mMediaPlayer.reset();
+            mMediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
+            mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+                    mediaPlayer.reset();
+                    return false;
+                }
+            });
+            mMediaPlayer.prepare();
+            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mMediaPlayer.start();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void playByAsset(String fileName, final PlayByAssetsListener listener) {
+        //打开Asset目录
+        AssetManager assetManager = mContext.getAssets();
+        mMediaPlayer = new SMediaPlayer();
+        try {
+            AssetFileDescriptor assetFileDescriptor = assetManager.openFd(fileName);
+            mMediaPlayer.reset();
+            mMediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
+            mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+                    mediaPlayer.reset();
+                    return false;
+                }
+            });
+            mMediaPlayer.prepare();
+            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    //加载完成自动播放
+                    mMediaPlayer.start();
+                }
+            });
+            mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    //播放完毕监听
                     listener.onCompletion(mMediaPlayer);
                 }
             });
