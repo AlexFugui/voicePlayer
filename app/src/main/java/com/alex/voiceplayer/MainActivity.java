@@ -133,6 +133,28 @@ public class MainActivity extends AppCompatActivity {
                 btnCache.setText("缓存占用:" + SPlayer.instance().getCacheSize() + ".点击删除");
             }
         });
+
+        SPlayer.instance().playByAsset("overtime.mp3", new PlayerListener() {
+            @Override
+            public void LoadSuccess(SMediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+
+            @Override
+            public void Loading(SMediaPlayer mediaPlayer, int i) {
+
+            }
+
+            @Override
+            public void onCompletion(SMediaPlayer mediaPlayer) {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
     }
 
     @SuppressLint("HandlerLeak")

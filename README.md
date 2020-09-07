@@ -1,8 +1,7 @@
-# VoicePlayer
+#[Git Splayer](https://github.com/AlexFugui/voicePlayer)
+# SPlayer
 播放url格式的网络音频，支持缓存.
-  
-[ ![Download](https://api.bintray.com/packages/alexfugui/maven/sPlayer/images/download.svg?version=1.0.1) ](https://bintray.com/alexfugui/maven/sPlayer/1.0.1/link)
-
+ 
 # 引入
 ```groovy
 implementation 'com.alex:SPlayer:1.0.2'
@@ -109,6 +108,30 @@ SPlayer.instance().seekTo(int i);//增加播放进度修改
 
 SPlayer.instance().seekTo(long long, MediaPlayer.SEEK_CLOSEST);//适用api28以上的精准定位
 
+//播放assets文件
+        SPlayer.instance().playByAsset("overtime.mp3", new PlayerListener() {
+            @Override
+            public void LoadSuccess(SMediaPlayer mediaPlayer) {
+                mediaPlayer.start();
+            }
+
+            @Override
+            public void Loading(SMediaPlayer mediaPlayer, int i) {
+
+            }
+
+            @Override
+            public void onCompletion(SMediaPlayer mediaPlayer) {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
+
+
 ```
 # 权限
 ```java
@@ -136,4 +159,7 @@ SPlayer.instance().seekTo(long long, MediaPlayer.SEEK_CLOSEST);//适用api28以�
 ## v1.0.1
 - 优化MediaPlayer
 - 增加缓存查询和删除功能
+
+## v1.0.4
+-支持播放assets文件中的音频文件
 

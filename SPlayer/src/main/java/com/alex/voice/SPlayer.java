@@ -1,6 +1,8 @@
 package com.alex.voice;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.wifi.WifiManager;
@@ -136,7 +138,7 @@ public class SPlayer {
                         listener.Loading(mMediaPlayer, 100);
                     }
                 } else {
-                    //不适用缓存
+                    //不使用缓存
                     mMediaPlayer.setDataSource(url);
                     mMediaPlayer.prepareAsync();
                     mMediaPlayer.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
@@ -175,8 +177,67 @@ public class SPlayer {
         }
     }
 
+    public void playByAsset(String fileName, final PlayerListener listener) {
+        //打开Asset目录
+        AssetManager assetManager = mContext.getAssets();
+        mMediaPlayer = new SMediaPlayer();
+        try {
+            AssetFileDescriptor assetFileDescriptor = assetManager.openFd(fileName);
+            mMediaPlayer.reset();
+            mMediaPlayer.setDataSource(assetFileDescriptor.getFileDescriptor(), assetFileDescriptor.getStartOffset(), assetFileDescriptor.getLength());
+            mMediaPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                @Override
+                public boolean onError(MediaPlayer mediaPlayer, int i, int i1) {
+                    mediaPlayer.reset();
+                    return false;
+                }
+            });
+            mMediaPlayer.prepare();
+            mMediaPlayer.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
+                @Override
+                public void onBufferingUpdate(MediaPlayer mediaPlayer, int i) {
+                    //异步加载在线音乐监听
+                    listener.Loading(mMediaPlayer, i);
+                }
+            });
+            if (useWifiLock) {
+                //使用wifi锁
+                wifiLock = ((WifiManager) mContext.getApplicationContext().getSystemService(Context.WIFI_SERVICE)).createWifiLock(WifiManager.WIFI_MODE_FULL, "mylock");
+                // 启用wifi锁
+                wifiLock.acquire();
+            }
+            if (setWakeMode) {
+                //使用唤醒锁
+                mMediaPlayer.setWakeMode(mContext, PowerManager.PARTIAL_WAKE_LOCK);
+            }
+            mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    listener.LoadSuccess(mMediaPlayer);
+                }
+            });
+            mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    listener.onCompletion(mMediaPlayer);
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public MediaPlayer getMediaPlayer() {
         return mMediaPlayer != null ? mMediaPlayer : new MediaPlayer();
+    }
+
+    public void prepare() {
+        try {
+            mMediaPlayer.prepare();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void start() {
